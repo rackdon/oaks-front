@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { updateTask } from '../services/Tasks'
+import { deleteTask, updateTask } from '../services/Tasks'
 import { getPhase } from '../services/Phases'
-
 
 export function TaskComponent(props: any){
   const client = props.client
   const [task, setTask] = useState(props.task)
   const phaseHandler = props.phaseHandler
 
+  if(task) {
     return (
       <div id={task.id}>
         <label><input type='checkbox' checked={task.done} onChange={(e) => {
@@ -24,7 +24,15 @@ export function TaskComponent(props: any){
               }
             })
           }}}/>{task.name}</label>
+        <button onClick={async (e) => {
+          await deleteTask(client, task.id)
+          setTask(null)
+        }}>Delete</button>
       </div>
     )
+
+  } else {
+    return <div></div>
+  }
 
 }

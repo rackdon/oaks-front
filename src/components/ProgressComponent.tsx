@@ -36,9 +36,8 @@ export class ProgressComponent extends Component<any, any>{
           <input type='text' required={true} placeholder='New phase'></input>
           <button type='submit'>Create</button>
         </form>
-        <ol>
-          {this.state.phases.map((i: PhaseWithTasks) => <li key={i.id}><PhaseComponent phase={i} client={this.phasesClient}></PhaseComponent></li>)}
-        </ol>
+        <br></br>
+          {this.state.phases.map((i: PhaseWithTasks) => <div className='phaseList' key={i.id}><PhaseComponent phase={i} client={this.phasesClient}></PhaseComponent></div>)}
 
       </div>
 

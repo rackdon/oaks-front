@@ -19,5 +19,12 @@ export async function updateTask(client: AxiosInstance, taskId: string): Promise
   `
   const response =  await client.post('/graph/api', {}, {params: {query: graphQuery}})
   return response.data
+}
 
+export async function deleteTask(client: AxiosInstance, taskId: string): Promise<any> {
+  const graphQuery = `
+   mutation{ deleteTask(id:"${taskId}"){ name } } 
+  `
+  const response =  await client.post('/graph/api', {}, {params: {query: graphQuery}})
+  return response.data
 }

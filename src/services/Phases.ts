@@ -36,3 +36,11 @@ export async function createPhase(client: AxiosInstance, phaseName: string): Pro
   return response.data
 
 }
+
+export async function deletePhase(client: AxiosInstance, taskId: string): Promise<any> {
+  const graphQuery = `
+   mutation{ deletePhase(id:"${taskId}"){ name } } 
+  `
+  const response =  await client.post('/graph/api', {}, {params: {query: graphQuery}})
+  return response.data
+}
