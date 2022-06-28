@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PhaseComponent } from './Phases'
 import getClient from '../services/restClient'
-import { getPhases, PhaseWithTasks } from '../services/Phases'
+import { createPhase, getPhase, getPhases, PhaseWithTasks } from '../services/Phases'
 
 export class ProgressComponent extends Component<any, any>{
   readonly phasesClient
@@ -14,11 +14,33 @@ export class ProgressComponent extends Component<any, any>{
     getPhases(this.phasesClient).then(data => this.setState({phases: data}))
   }
 
+  createPhase = async (e: any) => {
+    const phaseName = e.target[0].value
+    e.preventDefault()
+    const {errors, data} = await createPhase(this.phasesClient, phaseName)
+    if (errors) {
+      alert(errors[0].message)
+    } else {
+      const newPhase = data.createPhase
+      newPhase.tasks = []
+      const phases = this.state.phases
+      phases.push(newPhase)
+      this.setState({phases: phases})
+    }
+  }
+
   render() {
     return (
-      <ol>
-        {this.state.phases.map((i: PhaseWithTasks) => <li key={i.id}><PhaseComponent phase={i} client={this.phasesClient}></PhaseComponent></li>)}
-      </ol>
+      <div>
+        <form onSubmit={this.createPhase}>
+          <input type='text' required={true} placeholder='New phase'></input>
+          <button type='submit'>Create</button>
+        </form>
+        <ol>
+          {this.state.phases.map((i: PhaseWithTasks) => <li key={i.id}><PhaseComponent phase={i} client={this.phasesClient}></PhaseComponent></li>)}
+        </ol>
+
+      </div>
 
       )
   }

@@ -27,3 +27,12 @@ export async function getPhase(client: AxiosInstance, phaseId: string): Promise<
   const response =  await client.get('/graph/api/', {params: {query: graphQuery}})
   return response.data.data.phase
 }
+
+export async function createPhase(client: AxiosInstance, phaseName: string): Promise<any> {
+  const graphQuery = `
+   mutation{ createPhase(name:"${phaseName}"){id, name, done } } 
+  `
+  const response =  await client.post('/graph/api', {}, {params: {query: graphQuery}})
+  return response.data
+
+}
