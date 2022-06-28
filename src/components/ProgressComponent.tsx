@@ -17,7 +17,7 @@ export class ProgressComponent extends Component<any, any>{
   render() {
     return (
       <ol>
-        {this.state.phases.map((i: PhaseWithTasks) => <li key={i.id}><PhaseComponent phase={i}></PhaseComponent></li>)}
+        {this.state.phases.map((i: PhaseWithTasks) => <li key={i.id}><PhaseComponent phase={i} client={this.phasesClient}></PhaseComponent></li>)}
       </ol>
 
       )
