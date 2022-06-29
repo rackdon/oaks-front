@@ -40,6 +40,15 @@
 #root {
   counter-reset:phase-counter; /* Initiate a counter */
 }
+
+.phase {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.task {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 .phaseList > .phase::before {
   counter-increment:phase-counter; /* Increment the counter by 1 */
   content:counter(phase-counter);
@@ -51,4 +60,15 @@
   font-weight:bold;
   font-family:"Helvetica Neue", Arial, sans-serif;
   text-align:center;
+}
+
+i.icon-red {
+  color: #c20909;
+}
+i.icon-green {
+  color: green;
+}
+
+a.right {
+  margin-left: 10px;
 }

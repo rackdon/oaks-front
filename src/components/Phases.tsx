@@ -9,17 +9,17 @@ export function PhaseComponent(props: any) {
   const handler = (phaseData: any) => setPhase({...phase, ...phaseData})
   const deleteButton = () => {
     if(phase.tasks.length === 0) {
-      return <button onClick={async (e) => {
+      return <a onClick={async (e) => {
         await deletePhase(client, phase.id)
         setPhase(null)
-      }}>Delete</button>
+      }}><i className="material-icons icon-red">delete_forever</i></a>
     }
   }
   if(phase) {
     return (
       <div className='phase' id={phase.id}>
         <label>{phase.name} {phase.done ? '\u2714' : null}</label>
-        <button onClick={async (e) => {
+        <a className='right' onClick={async (e) => {
           const newTaskName = prompt("What is the name of the task?", "New Task")
           if (newTaskName) {
             const {errors, data} = await createTask(client, phase.id, newTaskName)
@@ -33,11 +33,9 @@ export function PhaseComponent(props: any) {
             }
 
           }
-        // await deletePhase(client, phase.id)
-        // setPhase(null)
-      }}>New task</button>
+      }}><i className="material-icons icon-green">add_circle</i></a>
         {deleteButton()}
-        <ul>{phase.tasks.map((t: TaskSimple) => <TaskComponent key={t.id} task={t} client={props.client} phaseHandler = {handler}></TaskComponent>)}</ul>
+        {phase.tasks.map((t: TaskSimple) => <TaskComponent key={t.id} task={t} client={props.client} phaseHandler = {handler}></TaskComponent>)}
       </div>
     )}
   else {

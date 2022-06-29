@@ -9,7 +9,7 @@ export function TaskComponent(props: any){
 
   if(task) {
     return (
-      <div id={task.id}>
+      <div className='task' id={task.id}>
         <label><input type='checkbox' checked={task.done} onChange={(e) => {
           if (e.target.checked) {
             updateTask(client, task.id).then(async ({data, errors}) => {
@@ -24,10 +24,10 @@ export function TaskComponent(props: any){
               }
             })
           }}}/>{task.name}</label>
-        <button onClick={async (e) => {
+        <a className='right' onClick={async (e) => {
           await deleteTask(client, task.id)
           setTask(null)
-        }}>Delete</button>
+        }}><i className="material-icons icon-red">delete_forever</i></a>
       </div>
     )
 

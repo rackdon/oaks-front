@@ -31,7 +31,7 @@ export async function deleteTask(client: AxiosInstance, taskId: string): Promise
 
 export async function createTask(client: AxiosInstance, phaseId: string, name: string): Promise<any> {
   const graphQuery = `
-   mutation{ createTask(phaseId:"${phaseId}" name:"${name}"){ id, name, done } } 
+   mutation{ createTask(phaseId:"${phaseId}" name:"${name}"){ id, name, done, phaseId } } 
   `
   const response =  await client.post('/graph/api', {}, {params: {query: graphQuery}})
   return response.data
