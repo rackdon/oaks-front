@@ -41,25 +41,53 @@
   counter-reset:phase-counter; /* Initiate a counter */
 }
 
-.phase {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.fullList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /*padding-left: 37%;*/
 }
-.task {
-  padding-top: 5px;
-  padding-bottom: 5px;
+.phaseList {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.tasksList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .phaseList > .phase::before {
   counter-increment:phase-counter; /* Increment the counter by 1 */
   content:counter(phase-counter);
   border-radius: 50%;
   margin-right:8px;
-  padding:4px;
+  padding: 4px 6px;
   color:#fff;
   background: #000000;
   font-weight:bold;
   font-family:"Helvetica Neue", Arial, sans-serif;
   text-align:center;
+}
+.phase {
+  width: 300px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+}
+.task {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.phaseLabel {
+  font-weight:bold;
+  font-size: large;
+
 }
 
 i.icon-red {

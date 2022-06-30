@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PhaseComponent } from './Phases'
 import getClient from '../services/restClient'
-import { createPhase, getPhase, getPhases, PhaseWithTasks } from '../services/Phases'
+import { createPhase, getPhases, PhaseWithTasks } from '../services/Phases'
 
 export class ProgressComponent extends Component<any, any>{
   readonly phasesClient
@@ -37,10 +37,10 @@ export class ProgressComponent extends Component<any, any>{
           <button type='submit'>Create</button>
         </form>
         <br></br>
-          {this.state.phases.map((i: PhaseWithTasks) => <div className='phaseList' key={i.id}><PhaseComponent phase={i} client={this.phasesClient}></PhaseComponent></div>)}
-
+        <div className='fullList'>
+          {this.state.phases.map((i: PhaseWithTasks) => <div key={i.id}><PhaseComponent phase={i} client={this.phasesClient}></PhaseComponent></div>)}
+        </div>
       </div>
-
       )
   }
 
