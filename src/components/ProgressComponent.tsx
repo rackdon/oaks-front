@@ -26,6 +26,7 @@ export class ProgressComponent extends Component<any, any>{
       const phases = this.state.phases
       phases.push(newPhase)
       this.setState({phases: phases})
+      e.target[0].value = null
     }
   }
 
